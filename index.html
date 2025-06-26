@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Simples</title>
+  <style>
+    body {
+      background-color: #f5e1f7;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .calculadora {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 280px;
+    }
+
+    #visor {
+      width: 100%;
+      font-size: 2rem;
+      padding: 10px;
+      margin-bottom: 10px;
+      text-align: right;
+      border-radius: 10px;
+      border: 2px solid #d1a8e6;
+      box-sizing: border-box;
+    }
+
+    .botoes {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(50px, 1fr));
+      gap: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #d1a8e6;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #c084dc;
+      outline: none;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #a855f7;
+    }
+
+    button[style*="grid-column"] {
+      background-color: #f87171 !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculadora">
+    <input type="text" id="visor" disabled aria-label="Visor da calculadora"/>
+    <div class="botoes">
+      <button type="button" aria-label="Número 7" onclick="inserir('7')">7</button>
+      <button type="button" aria-label="Número 8" onclick="inserir('8')">8</button>
+      <button type="button" aria-label="Número 9" onclick="inserir('9')">9</button>
+      <button type="button" aria-label="Divisão" onclick="inserir('/')">/</button>
+
+      <button type="button" aria-label="Número 4" onclick="inserir('4')">4</button>
+      <button type="button" aria-label="Número 5" onclick="inserir('5')">5</button>
+      <button type="button" aria-label="Número 6" onclick="inserir('6')">6</button>
+      <button type="button" aria-label="Multiplicação" onclick="inserir('*')">*</button>
+
+      <button type="button" aria-label="Número 1" onclick="inserir('1')">1</button>
+      <button type="button" aria-label="Número 2" onclick="inserir('2')">2</button>
+      <button type="button" aria-label="Número 3" onclick="inserir('3')">3</button>
+      <button type="button" aria-label="Subtração" onclick="inserir('-')">-</button>
+
+      <button type="button" aria-label="Número 0" onclick="inserir('0')">0</button>
+      <button type="button" aria-label="Ponto decimal" onclick="inserir('.')">.</button>
+      <button type="button" aria-label="Igual" onclick="calcular()">=</button>
+      <button type="button" aria-label="Adição" onclick="inserir('+')">+</button>
+
+      <button type="button" aria-label="Limpar visor" onclick="limpar()" style="grid-column: span 4;">Limpar</button>
+    </div>
+  </div>
+
+  <script>
+    function inserir(valor) {
+      document.getElementById('visor').value += valor;
+    }
+    function limpar() {
+      document.getElementById('visor').value = '';
+    }
+    function calcular() {
+      try {
+        document.getElementById('visor').value = eval(document.getElementById('visor').value);
+      } catch {
+        alert('Expressão inválida!');
+      }
+    }
+  </script>
+</body>
+</html>
